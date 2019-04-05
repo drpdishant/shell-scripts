@@ -5,7 +5,8 @@ wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -
 echo ">>     Download Rocket Chat"
 wget https://github.com/RocketChat/Rocket.Chat.Electron/releases/download/2.15.1/rocketchat_2.15.1_amd64.deb -P ~/Downloads
 
-
+sudo dpkg -i ~/*.dpkg
+sudo apt-get -f install
 echo ">>     Download and Install Sublime"
 
 echo ">> ------ Install the GPG key: "
@@ -37,3 +38,4 @@ sudo add-apt-repository \
    stable"
 sudo apt-get update
 sudo apt-get install docker-ce docker-ce-cli containerd.io
+sudo usermod -aG docker $USER
