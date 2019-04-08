@@ -19,10 +19,18 @@ else
 fi
 
 cd ~/Downloads
+if [ $(dpkg-query -W -f='${Status}' google-chrome-stable 2>/dev/null | grep -c "ok installed") -eq 0 ];
+then
 sudo dpkg -i ~/Downloads/google-chrome*
+fi
+if [ $(dpkg-query -W -f='${Status}' rocketchat 2>/dev/null | grep -c "ok installed") -eq 0 ];
+then
 sudo dpkg -i ~/Downloads/rocketchat*
+fi
 sudo apt-get -f install
 
+if [ $(dpkg-query -W -f='${Status}' sublime-text 2>/dev/null | grep -c "ok installed") -eq 0 ];
+then
 echo ">>     Download and Install Sublime"
 
 echo ">> ------ Install the GPG key: "
@@ -37,8 +45,9 @@ echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sou
 echo ">>     Upadte Cache & Install Sublime Text"
 sudo apt-get update
 sudo apt-get install sublime-text
+fi
 
-if [ $(dpkg-query -W -f='${Status}' docker 2>/dev/null | grep -c "ok installed") -eq 0 ];
+if [ $(dpkg-query -W -f='${Status}' docker-ce 2>/dev/null | grep -c "ok installed") -eq 0 ];
 then
 echo ">>     Install Docker CE"
 sudo apt-get update
