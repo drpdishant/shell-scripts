@@ -1,11 +1,6 @@
 #!/bin/bash
 sudo apt-get update
 
-echo "Find and Remove Older Packages of Chrome  and Rocket Chat"
-
-find ~/Downloads -type f -name "rocketchat*" -mtime +2 -exec rm {} \;
-find ~/Downloads -type f -name "google-chrome*" -mtime +2 -exec rm {} \;
-
 echo ">>     CHeck for Chrome package and Download if not exists"
 if ls $HOME/Downloads/google-chrome* 1> /dev/null 2>&1; then
     echo "Chrome Package exists"
@@ -19,7 +14,7 @@ echo ">>     CHeck for Rocket chat package and Download if not exists"
 if ls $HOME/Downloads/rocketchat* 1> /dev/null 2>&1; then
     echo "Rocket Chat Package exists"
 else
-    echo "Chrome doesn't exist   >>>>> Downloading "
+    echo "Rocket.Chat doesn't Exist  >>>>> Downloading "
     wget wget https://github.com/RocketChat/Rocket.Chat.Electron/releases/download/2.15.1/rocketchat_2.15.1_amd64.deb -P ~/Downloads
 fi
 
