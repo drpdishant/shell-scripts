@@ -1,7 +1,13 @@
 #!/bin/bash
 sudo apt-get update
-echo ">>     Download Chrome Package"
-wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -P ~/Downloads
+find ~/Downloads -type f -name "google-chrome*" -mtime +1 -exec rm {} \;
+if ls $HOME/Downloads/google-chrome* 1> /dev/null 2>&1; then
+    echo "Chrome Package exists"
+else
+    echo "Chrome doesn't exist   >>>>> Downloading "
+    wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -P ~/Downloads
+fi
+
 echo ">>     Download Rocket Chat"
 wget https://github.com/RocketChat/Rocket.Chat.Electron/releases/download/2.15.1/rocketchat_2.15.1_amd64.deb -P ~/Downloads
 
