@@ -16,7 +16,7 @@ fi
 
 echo ">>     CHeck for Rocket chat package and Download if not exists"
 
-if ls $HOME/Downloads/google-chrome* 1> /dev/null 2>&1; then
+if ls $HOME/Downloads/rocketchat* 1> /dev/null 2>&1; then
     echo "Rocket Chat Package exists"
 else
     echo "Chrome doesn't exist   >>>>> Downloading "
