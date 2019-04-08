@@ -1,6 +1,12 @@
 #!/bin/bash
 sudo apt-get update
-find ~/Downloads -type f -name "google-chrome*" -mtime +1 -exec rm {} \;
+
+echo "Find and Remove Older Packages of Chrome  and Rocket Chat"
+
+find ~/Downloads -type f -name "rocketchat*" -mtime +2 -exec rm {} \;
+find ~/Downloads -type f -name "google-chrome*" -mtime +2 -exec rm {} \;
+
+echo ">>     CHeck for Chrome package and Download if not exists"
 if ls $HOME/Downloads/google-chrome* 1> /dev/null 2>&1; then
     echo "Chrome Package exists"
 else
@@ -8,12 +14,20 @@ else
     wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -P ~/Downloads
 fi
 
-echo ">>     Download Rocket Chat"
-wget https://github.com/RocketChat/Rocket.Chat.Electron/releases/download/2.15.1/rocketchat_2.15.1_amd64.deb -P ~/Downloads
+echo ">>     CHeck for Rocket chat package and Download if not exists"
+
+if ls $HOME/Downloads/google-chrome* 1> /dev/null 2>&1; then
+    echo "Rocket Chat Package exists"
+else
+    echo "Chrome doesn't exist   >>>>> Downloading "
+    wget wget https://github.com/RocketChat/Rocket.Chat.Electron/releases/download/2.15.1/rocketchat_2.15.1_amd64.deb -P ~/Downloads
+fi
 
 cd ~/Downloads
-sudo dpkg -i ~/Downloads/*.dpkg
+sudo dpkg -i ~/Downloads/google-chrome*
+sudo dpkg -i ~/Downloads/rocketchat*
 sudo apt-get -f install
+
 echo ">>     Download and Install Sublime"
 
 echo ">> ------ Install the GPG key: "
