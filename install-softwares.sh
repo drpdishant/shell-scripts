@@ -18,7 +18,6 @@ else
     wget wget https://github.com/RocketChat/Rocket.Chat.Electron/releases/download/2.15.1/rocketchat_2.15.1_amd64.deb -P ~/Downloads
 fi
 
-cd ~/Downloads
 if [ $(dpkg-query -W -f='${Status}' google-chrome-stable 2>/dev/null | grep -c "ok installed") -eq 0 ];
 then
 sudo dpkg -i ~/Downloads/google-chrome*
