@@ -43,6 +43,8 @@ echo ">>     Upadte Cache & Install Sublime Text"
 sudo apt-get update
 sudo apt-get install sublime-text
 
+if [ $(dpkg-query -W -f='${Status}' docker 2>/dev/null | grep -c "ok installed") -eq 0 ];
+then
 echo ">>     Install Docker CE"
 sudo apt-get update
 sudo apt-get install \
@@ -60,3 +62,4 @@ sudo add-apt-repository \
 sudo apt-get update
 sudo apt-get install docker-ce docker-ce-cli containerd.io
 sudo usermod -aG docker $USER
+fi
