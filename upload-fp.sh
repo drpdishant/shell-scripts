@@ -6,4 +6,4 @@ find . -type f -name "*.csv" -mtime +7 -exec rm {} \;
 
 #Sync data with the remote server
 echo "Syncing Data with Remote Server"
-rysnc . <user>@<host>:<remote-file-path> --delete
+rsync -r -e  "ssh  -o StrictHostKeyChecking=no -i "<path-to-key>"" . <user>@<host>:<remote-path> --delete
