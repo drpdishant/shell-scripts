@@ -15,7 +15,7 @@ if ls $HOME/Downloads/rocketchat* 1> /dev/null 2>&1; then
     echo "Rocket Chat Package exists"
 else
     echo "Rocket.Chat doesn't Exist  >>>>> Downloading "
-    wget wget https://github.com/RocketChat/Rocket.Chat.Electron/releases/download/2.15.1/rocketchat_2.15.1_amd64.deb -P ~/Downloads
+    wget wget https://github.com/RocketChat/Rocket.Chat.Electron/releases/download/2.15.2/rocketchat_2.15.2_amd64.deb -P ~/Downloads
 fi
 
 if [ $(dpkg-query -W -f='${Status}' google-chrome-stable 2>/dev/null | grep -c "ok installed") -eq 0 ];
