@@ -1,5 +1,4 @@
 # shell-scripts
-
 ## Install all regular program 
 ``` sudo apt-get update && sudo apt-get install curl ```
 ##
