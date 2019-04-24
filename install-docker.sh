@@ -1,4 +1,5 @@
 #!/bin/bash
+installed_docker_version=`docker -v | awk '{print $3}' | tr -d '(,|.)'`;
 
 if [ $(dpkg-query -W -f='${Status}' docker-ce 2>/dev/null | grep -c "ok installed") -eq 0 ];
 then
