@@ -9,11 +9,17 @@ echo ">>>>> Clone Drupal8-vagrant Repo"
 gituser=saurabhd
 
 
-read -p "Enter Git Password for ($gituser):" -s gitpass
+read -p "Enter Git Password for ($gituser):" -s gitpas
 
 giturlpass=`urlencode $gitpass`
 
 dockerdev="https://$gituser:$giturlpass@github.com/saurabhd/Drupal8-vagrant.git"
 
-#git pull $dockerdev ~/Drupal8-vagrant/
-git clone $dockerdev
+
+if [ -d ~/Drupal8-vagrant ]
+then
+    echo "Repo Already Exists >> Executing Git Pull"
+    git pull origin master
+else
+    git clone $dockerdev ~/Drupal8-vagrant
+fi
