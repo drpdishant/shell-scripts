@@ -1,5 +1,5 @@
 #!/bin/bash
-installed_docker_version=`docker -v | awk '{print $3}' | tr -d '(,|.)'`;
+
 
 if [ $(dpkg-query -W -f='${Status}' docker-ce 2>/dev/null | grep -c "ok installed") -eq 0 ];
 then
@@ -20,4 +20,7 @@ sudo add-apt-repository \
 sudo apt-get update
 sudo apt-get -y install docker-ce docker-ce-cli containerd.io
 sudo usermod -aG docker $USER
+else
+installed_docker_version=`docker -v | awk '{print $3}' | tr -d '(,|.)'`;
+echo "Docker $installed_docker_version already Installed"
 fi
