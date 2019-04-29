@@ -1,6 +1,7 @@
 #!/bin/bash
 
-
+un_codename="disco"
+codename=$(lsb_release -cs)
 if [ $(dpkg-query -W -f='${Status}' docker-ce 2>/dev/null | grep -c "ok installed") -eq 0 ];
 then
 echo ">>     Install Docker CE"
@@ -13,14 +14,22 @@ sudo apt-get -y install \
     software-properties-common
 
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+if [ $codename = "disco"] ;
+then
+sudo add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   bionic \
+   stable"
+else
 sudo add-apt-repository \
    "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
    $(lsb_release -cs) \
    stable"
+fi
 sudo apt-get update
 sudo apt-get -y install docker-ce docker-ce-cli containerd.io
 sudo usermod -aG docker $USER
 else
-installed_docker_version=`docker -v | awk '{print $3}' | tr -d '(,|.)'`;
-echo "Docker $installed_docker_version already Installed"
+installed_docker_version=`docker -v`;
+echo "$installed_docker_version already Installed"
 fi
