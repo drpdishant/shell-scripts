@@ -19,7 +19,7 @@ clear
 
 
 
-brach=dev
+branch=dev
 
 chrome="https://raw.githubusercontent.com/drpdishant/shell-scripts/$branch/install-chrome.sh"
 rocketchat="https://raw.githubusercontent.com/drpdishant/shell-scripts/$branch/install-rocketchat.sh"
