@@ -1,7 +1,13 @@
 #!/bin/bash
 
-#Selection Dialog
+#Check if Dialogs is Installed
+echo "Preparing Dialog"
 
+sudo apt-get update -qq
+dpkg -l dialog &>/dev/null || sudo apt-get -f install dialog -y -qq
+
+clear
+#Selection Dialog
 cmd=(dialog --separate-output --checklist "Select Packages to Install:" 22 76 16)
 options=(1 "Google Chrome" on    # any option can be set to default to "on"
          2 "Rocketchat" on
@@ -13,7 +19,7 @@ clear
 
 
 
-read -p "Enter Branch (dev or master): " branch
+brach=dev
 
 chrome="https://raw.githubusercontent.com/drpdishant/shell-scripts/$branch/install-chrome.sh"
 rocketchat="https://raw.githubusercontent.com/drpdishant/shell-scripts/$branch/install-rocketchat.sh"
@@ -25,28 +31,18 @@ for choice in $choices
 do
     case $choice in
         1)
-            echo "First Option"
+            bash -c "$(curl -sL $chrome)"
             ;;
         2)
-            echo "Second Option"
+            bash -c "$(curl -sL $rocketchat)"
             ;;
         3)
-            echo "Third Option"
+            bash -c "$(curl -sL $sublime)"
             ;;
         4)
-            echo "Fourth Option"
+            bash -c "$(curl -sL $docker)"
             ;;
         5)  
-            echo "Fifth Option"
+            bash -c "$(curl -sL $gitclone)"
     esac
 done
-bash -c "$(curl -sL $chrome)"
-
-bash -c "$(curl -sL $rocketchat)"
-
-bash -c "$(curl -sL $sublime)"
-
-bash -c "$(curl -sL $docker)"
-
-bash -c "$(curl -sL $gitclone)"
-
