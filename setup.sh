@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #Check if Dialogs is Installed
-echo "Preparing Dialog"
+echo -e "Preparing Dialog"
 
 sudo apt-get update -qq
 dpkg -l dialog &>/dev/null || sudo apt-get -f install dialog -y -qq
