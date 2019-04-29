@@ -1,5 +1,6 @@
 #!/bin/bash
 
+read -e -p "Enter Branch [master]/dev: " -i "master" branch
 #Check if Dialogs is Installed
 echo -e "Preparing Dialog"
 
@@ -16,10 +17,6 @@ options=(1 "Google Chrome" on    # any option can be set to default to "on"
          5 "Docker Repo" off)
 choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
 clear
-
-
-
-branch=dev
 
 chrome="https://raw.githubusercontent.com/drpdishant/shell-scripts/$branch/install-chrome.sh"
 rocketchat="https://raw.githubusercontent.com/drpdishant/shell-scripts/$branch/install-rocketchat.sh"
