@@ -11,5 +11,7 @@ fi
 if [ $(dpkg-query -W -f='${Status}' rocketchat 2>/dev/null | grep -c "install ok installed") -eq 0 ];
 then
 sudo dpkg -i ~/Downloads/rocketchat*
-fi
 sudo apt-get -f install -y 
+else
+echo "RocketChat Already Installed"
+fi
