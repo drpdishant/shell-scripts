@@ -1,8 +1,9 @@
 #!/bin/bash
 
-echo ">>        Check and Install Sublime Text"
-if [ $(dpkg-query -W -f='${Status}' sublime-text 2>/dev/null | grep -c "ok installed") -eq 0 ];
+if [ -f /opt/sublime_text/sublime_text ];
 then
+echo -e "$(subl -v) already exists.\n"
+else
 echo ">>     Download and Install Sublime"
 
 echo ">> ------ Install the GPG key: "
