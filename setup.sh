@@ -1,7 +1,8 @@
 #!/bin/bash
 
+read -e -p "Enter Branch [master]/dev: " -i "master" branch
 #Check if Dialogs is Installed
-echo "Preparing Dialog"
+echo -e "Preparing Dialog"
 
 sudo apt-get update -qq
 dpkg -l dialog &>/dev/null || sudo apt-get -f install dialog -y -qq
@@ -17,10 +18,6 @@ options=(1 "Google Chrome" on    # any option can be set to default to "on"
 choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
 clear
 
-
-
-brach=dev
-
 chrome="https://raw.githubusercontent.com/drpdishant/shell-scripts/$branch/install-chrome.sh"
 rocketchat="https://raw.githubusercontent.com/drpdishant/shell-scripts/$branch/install-rocketchat.sh"
 sublime="https://raw.githubusercontent.com/drpdishant/shell-scripts/$branch/install-sublime.sh"
@@ -32,17 +29,22 @@ do
     case $choice in
         1)
             bash -c "$(curl -sL $chrome)"
+            echo -e "---------------------------------------------------- \n"
             ;;
         2)
             bash -c "$(curl -sL $rocketchat)"
+            echo -e "---------------------------------------------------- \n"
             ;;
         3)
             bash -c "$(curl -sL $sublime)"
+            echo -e "---------------------------------------------------- \n"
             ;;
         4)
             bash -c "$(curl -sL $docker)"
+            echo -e "---------------------------------------------------- \n"
             ;;
         5)  
             bash -c "$(curl -sL $gitclone)"
+            echo -e "---------------------------------------------------- \n"
     esac
 done

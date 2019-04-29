@@ -1,21 +1,33 @@
 #!/bin/bash
 
 if [ -f /opt/sublime_text/sublime_text ];
-then
-echo -e "$(subl -v) already exists.\n"
-else
-echo ">>     Download and Install Sublime"
 
-echo ">> ------ Install the GPG key: "
+then
+echo -e -e "$(subl -v) already exists.\n"
+echo "Checking if it can be updated."
+current=$(subl -v | awk '{print $4}')
+sudo apt-get install sublime-text -y -qq
+updated=$(subl -v | awk '{print $4}')
+    if [ $current != $updated ];
+    then
+        echo -e "Updated to $(subl -v)\n"
+    else
+        echo -e "No Update Found!\n"
+    fi
+
+else
+echo -e ">>     Download and Install Sublime\n"
+
+echo -e ">> ------ Install the GPG key: \n"
 
 wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
-echo ">> ------ Ensure apt is set up to work with https sources:"
+echo -e ">> ------ Ensure apt is set up to work with https sources:\n"
 
 sudo apt-get -y install apt-transport-https
-echo ">> ------ Select the channel to use: Stable"
+echo -e ">> ------ Select the channel to use: Stable"
 
-echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
-echo ">>     Upadte Cache & Install Sublime Text"
+echo -e "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
+echo -e ">>     Upadte Cache & Install Sublime Text\n"
 sudo apt-get update
 sudo apt-get install sublime-text -y
 fi
