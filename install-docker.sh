@@ -1,4 +1,15 @@
 #!/bin/bash
+#docker-compose
+if [ -f /usr/local/bin/docker-compose ] 
+then
+   echo "$(docker-compose -v) already installed.\n"
+else
+   echo "Docker Compose not found. >>>> Installing "
+   sudo curl -sL "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+   sudo chmod +x /usr/local/bin/docker-compose
+   sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+
+fi
 
 un_codename="disco"
 codename=$(lsb_release -cs)
