@@ -1,6 +1,4 @@
 #!/bin/bash
-
-
 echo ">>>>> Clone Drupal8-vagrant Repo"
 
 dockerdev="https://github.com/saurabhd/Drupal8-vagrant.git"
