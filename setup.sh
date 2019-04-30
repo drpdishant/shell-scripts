@@ -4,8 +4,8 @@ read -e -p "Enter Branch [master]/dev: " -i "master" branch
 #Check if Dialogs is Installed
 echo -e "Preparing Dialog"
 
-sudo apt-get update -qq
-sudo apt-get -f install dialog -y -qq
+sudo apt-get -qq update 
+sudo apt-get -y -qq -f install dialog  
 
 clear
 #Selection Dialog

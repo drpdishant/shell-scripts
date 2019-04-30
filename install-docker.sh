@@ -15,8 +15,8 @@ un_codename="disco"
 codename=$(lsb_release -cs)
 if [ $(dpkg-query -W -f='${Status}' docker-ce 2>/dev/null | grep -c "ok installed") -eq 0 ];
 then
-sudo apt-get update
-sudo apt-get -y install \
+sudo apt-get -qq update
+sudo apt-get -y -qq  install \
     apt-transport-https \
     ca-certificates \
     curl \
@@ -36,14 +36,14 @@ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
    $(lsb_release -cs) \
    stable"
    fi
-sudo apt-get update
-sudo apt-get -y install docker-ce docker-ce-cli containerd.io
+sudo apt-get -qq update
+sudo apt-get -y -qq  install docker-ce docker-ce-cli containerd.io
 sudo usermod -aG docker $USER
 else
 current=`docker -v | awk '{print $3}' | tr -d '(,|.)'`;
 echo -e "$(docker -v) already Installed\n"
 echo -e "Checking if it can be Updated\n"
-sudo apt-get -y install docker-ce docker-ce-cli containerd.io -qq
+sudo apt-get -y -qq  install docker-ce docker-ce-cli containerd.io 
 updated=`docker -v | awk '{print $3}' | tr -d '(,|.)'`;
    if [ $current != $updated ];
    then

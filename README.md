@@ -2,7 +2,7 @@
 ## Install all regular program
 It will fetch and run scripts directly from the web using curl
 So first of all we need to install curl
-``` sudo apt-get update && sudo apt-get install curl ```
+``` sudo apt-get -qq update && sudo apt-get -y -qq install curl ```
 
 ## Beginning the Installation
 After installing curl you can now run the following command to begin the setup.
