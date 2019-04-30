@@ -5,7 +5,7 @@ read -e -p "Enter Branch [master]/dev: " -i "master" branch
 echo -e "Preparing Dialog"
 
 sudo apt-get update -qq
-dpkg -l dialog &>/dev/null || sudo apt-get -f install dialog -y -qq
+sudo apt-get -f install dialog -y -qq
 
 clear
 #Selection Dialog
