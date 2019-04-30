@@ -19,7 +19,7 @@ echo -e "Checking if it can be updated\n"
     if [ $current != $latest ]
     then
     rm -rf $HOME/Downloads/rocketchat*
-    wget wget https://github.com/RocketChat/Rocket.Chat.Electron/releases/download/$latest/rocketchat_$latest_amd64.deb -P ~/Downloads
+    wget https://github.com/RocketChat/Rocket.Chat.Electron/releases/download/$latest/rocketchat_$latest_amd64.deb -P ~/Downloads
     sudo dpkg -i ~/Downloads/rocketchat*
     sudo apt-get -f install -y -qq
     echo -e "Updated Rocketchat to $(dpkg -s rocketchat | grep '^Version:')\n"
