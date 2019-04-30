@@ -21,7 +21,7 @@ sudo apt-get -y -qq  install \
     curl \
     gnupg-agent \
     software-properties-common
-    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - 
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
    if [ $codename = "disco"] ;
    then
    sudo add-apt-repository \
