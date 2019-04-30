@@ -4,8 +4,8 @@ read -e -p "Enter Branch [master]/dev: " -i "master" branch
 #Check if Dialogs is Installed
 echo -e "Preparing Dialog"
 
-sudo apt-get update -qq
-sudo apt-get -f install dialog -y -qq
+sudo apt-get -qq update 
+sudo apt-get -y -qq -f install dialog  
 
 clear
 #Selection Dialog
@@ -22,7 +22,7 @@ chrome="https://raw.githubusercontent.com/drpdishant/shell-scripts/$branch/insta
 rocketchat="https://raw.githubusercontent.com/drpdishant/shell-scripts/$branch/install-rocketchat.sh"
 sublime="https://raw.githubusercontent.com/drpdishant/shell-scripts/$branch/install-sublime.sh"
 docker="https://raw.githubusercontent.com/drpdishant/shell-scripts/$branch/install-docker.sh"
-gitclone="https://raw.githubusercontent.com/drpdishant/shell-scripts/$branch/clone-docker_dev.sh"
+gitclone="https://raw.githubusercontent.com/drpdishant/shell-scripts/$branch/git_clone.sh"
 
 for choice in $choices
 do

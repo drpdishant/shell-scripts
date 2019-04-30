@@ -14,7 +14,7 @@ else
 echo -e "$(google-chrome-stable --version) already installed \n"
 current=`google-chrome-stable --version |  awk '{print $3}'`
 echo -e "Checking if it can be updated\n"
-sudo apt-get install google-chrome-stable -y -qq
+sudo apt-get -y -qq install google-chrome-stable  
 updated=`google-chrome-stable --version |  awk '{print $3}'`
     if [ $current != $updated ];
     then
