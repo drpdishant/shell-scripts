@@ -8,7 +8,6 @@ else
    sudo curl -sL "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
    sudo chmod +x /usr/local/bin/docker-compose
    sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
-
 fi
 
 un_codename="disco"
@@ -22,8 +21,7 @@ sudo apt-get -y -qq  install \
     curl \
     gnupg-agent \
     software-properties-common
-
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - 
    if [ $codename = "disco"] ;
    then
    sudo add-apt-repository \
