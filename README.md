@@ -24,5 +24,6 @@ You'll be prompted to enter branch to be used: (Default is "master")
 
 ### Docker bash
 
-wget https://raw.githubusercontent.com/drpdishant/shell-scripts/dev/dockerbash
+```wget https://raw.githubusercontent.com/drpdishant/shell-scripts/dev/dockerbash```
+
 chmod +x dockerbash && sudo cp dockerbash /usr/bin/dcbash 
