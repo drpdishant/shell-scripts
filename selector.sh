@@ -26,3 +26,9 @@ do
             echo "Fifth Option"
     esac
 done
+
+cmd=(dialog --separate-output --title "Mongo Install" --option "Select Packages to Install:" 22 76 16)
+options=(1 "4.0" on    # any option can be set to default to "on"
+         2 "4.1" off)
+choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
+clear
