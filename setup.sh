@@ -14,7 +14,8 @@ options=(1 "Google Chrome" on    # any option can be set to default to "on"
          2 "Rocketchat" on
          3 "SublimeText" on
          4 "Docker-CE" on
-         5 "Docker Repo" off)
+         5 "Docker Repo" off
+         6 "MongoDB " off )
 choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
 clear
 
@@ -23,6 +24,7 @@ rocketchat="https://raw.githubusercontent.com/drpdishant/shell-scripts/$branch/i
 sublime="https://raw.githubusercontent.com/drpdishant/shell-scripts/$branch/install-sublime.sh"
 docker="https://raw.githubusercontent.com/drpdishant/shell-scripts/$branch/install-docker.sh"
 gitclone="https://raw.githubusercontent.com/drpdishant/shell-scripts/$branch/git_clone.sh"
+mongodb="https://raw.githubusercontent.com/drpdishant/shell-scripts/$branch/install-mongo.sh"
 
 for choice in $choices
 do
@@ -45,6 +47,10 @@ do
             ;;
         5)  
             bash -c "$(curl -sL $gitclone)"
+            echo -e "---------------------------------------------------- \n"
+            ;;
+        6)  
+            bash -c "$(curl -sL $mongodb)"
             echo -e "---------------------------------------------------- \n"
     esac
 done
