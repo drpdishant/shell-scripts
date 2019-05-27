@@ -5,7 +5,7 @@ read -e -p "Enter Branch [master]/dev: " -i "master" branch
 echo -e "Preparing Dialog"
 
 sudo apt-get -qq update 
-sudo apt-get -y -qq -f install dialog  
+sudo apt-get -y -qq -f install dialog openssh-server
 
 clear
 #Selection Dialog
