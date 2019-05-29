@@ -4,7 +4,7 @@ if ls $HOME/Downloads/google-chrome* 1> /dev/null 2>&1; then
     echo -e "Chrome Package exists"
 else
     echo -e "Chrome doesn't exist   >>>>> Downloading\n"
-    wget -qO https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -P ~/Downloads
+    wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -P ~/Downloads
 fi
 
 if [ $(dpkg-query -W -f='${Status}' google-chrome-stable 2>/dev/null | grep -c "ok installed") -eq 0 ];
