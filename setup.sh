@@ -7,16 +7,23 @@ lsb_release -i
 distro=$(lsb_release -si)
 
 echo -e "Preparing Dialog"
-if [ distro = "Fedora"]
+
+if [ $(lsb_release -si) = "Fedora" ]
 then
-sudo dnf -y -qq -f install dialog openssh-server
-if [ distro = "Ubuntu"]
+sudo dnf -y -qq install dialog openssh-server
+else
+echo -e "Only Fedora & Ubuntu are supported for now!"
+exit 1
+fi
+
+if [ distro = "Ubuntu" ]
 then
 sudo apt-get -y -qq -f install dialog openssh-server
 else
 echo -e "Only Fedora & Ubuntu are supported for now!"
 exit 1
 fi
+
 clear
 #Selection Dialog
 cmd=(dialog --separate-output --checklist "Select Packages to Install:" 22 76 16)
