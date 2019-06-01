@@ -2,26 +2,20 @@
 
 read -e -p "Enter Branch [master]/dev: " -i "master" branch
 #check for distro
-echo -e "Checking Distro"
-lsb_release -i
+echo -e "Checking Distro\n"
 distro=$(lsb_release -si)
+lsb_release -i
 
-echo -e "Preparing Dialog"
+echo -e "\nPreparing Dialog"
 
 if [ $(lsb_release -si) = "Fedora" ]
 then
 sudo dnf -y -qq install dialog openssh-server
-else
-echo -e "Only Fedora & Ubuntu are supported for now!"
-exit 1
 fi
 
-if [ distro = "Ubuntu" ]
+if [ $(lsb_release -si) = "Ubuntu" ]
 then
 sudo apt-get -y -qq -f install dialog openssh-server
-else
-echo -e "Only Fedora & Ubuntu are supported for now!"
-exit 1
 fi
 
 clear
