@@ -1,12 +1,22 @@
 #!/bin/bash
 
 read -e -p "Enter Branch [master]/dev: " -i "master" branch
-#Check if Dialogs is Installed
+#check for distro
+echo -e "Checking Distro"
+lsb_release -i
+distro=$(lsb_release -si)
+
 echo -e "Preparing Dialog"
-
-sudo apt-get -qq update 
+if [ distro = "Fedora"]
+then
+sudo dnf -y -qq -f install dialog openssh-server
+if [ distro = "Ubuntu"]
+then
 sudo apt-get -y -qq -f install dialog openssh-server
-
+else
+echo -e "Only Fedora & Ubuntu are supported for now!"
+exit 1
+fi
 clear
 #Selection Dialog
 cmd=(dialog --separate-output --checklist "Select Packages to Install:" 22 76 16)
@@ -21,7 +31,7 @@ clear
 
 chrome="https://raw.githubusercontent.com/drpdishant/shell-scripts/$branch/install-chrome.sh"
 rocketchat="https://raw.githubusercontent.com/drpdishant/shell-scripts/$branch/install-rocketchat.sh"
-sublime="https://raw.githubusercontent.com/drpdishant/shell-scripts/$branch/install-sublime.sh"
+sublime="https://raw.githubusercontent.com/drpdishant/shell-scripts/$branch/install-sublime_$distro.sh"
 docker="https://raw.githubusercontent.com/drpdishant/shell-scripts/$branch/install-docker.sh"
 gitclone="https://raw.githubusercontent.com/drpdishant/shell-scripts/$branch/git_clone.sh"
 mongodb="https://raw.githubusercontent.com/drpdishant/shell-scripts/$branch/install-mongo.sh"
