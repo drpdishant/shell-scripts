@@ -30,12 +30,12 @@ options=(1 "Google Chrome" on    # any option can be set to default to "on"
 choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
 clear
 
-chrome="https://raw.githubusercontent.com/drpdishant/shell-scripts/$branch/install-chrome.sh"
-rocketchat="https://raw.githubusercontent.com/drpdishant/shell-scripts/$branch/install-rocketchat.sh"
+chrome="https://raw.githubusercontent.com/drpdishant/shell-scripts/$branch/install-chrome_$distro.sh"
+rocketchat="https://raw.githubusercontent.com/drpdishant/shell-scripts/$branch/install-rocketchat_$distro.sh"
 sublime="https://raw.githubusercontent.com/drpdishant/shell-scripts/$branch/install-sublime_$distro.sh"
-docker="https://raw.githubusercontent.com/drpdishant/shell-scripts/$branch/install-docker.sh"
+docker="https://raw.githubusercontent.com/drpdishant/shell-scripts/$branch/install-docker_$distro.sh"
 gitclone="https://raw.githubusercontent.com/drpdishant/shell-scripts/$branch/git_clone.sh"
-mongodb="https://raw.githubusercontent.com/drpdishant/shell-scripts/$branch/install-mongo.sh"
+mongodb="https://raw.githubusercontent.com/drpdishant/shell-scripts/$branch/install-mongo_$distro.sh"
 
 for choice in $choices
 do
