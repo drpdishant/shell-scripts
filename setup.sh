@@ -2,26 +2,26 @@
 
 read -e -p "Enter Branch [master]/dev: " -i "master" branch
 
-#check for distro
+#check for ID
 
-echo -e "\n>> Checking Distro\n"
+echo -e "\n>> Checking ID\n"
 . /etc/os-release
 echo -e "Distrubution Name = $NAME \n"
 
 #Preparing Dialog
+
 if [ $ID = "fedora" ]
     then
-    if [ $(dnf -q list installed dialog &>/dev/null && echo "1" || echo "0") -eq 0 ] 
-    then
-        sudo dnf -y -q install dialog
-    fi
-    if [ $(dnf -q list installed openssh-server &>/dev/null && echo "1" || echo "0") -eq 0 ] 
-    then
-        sudo dnf -y -q install openssh-server
-    fi
-fi
+        if [ $(dnf -q list installed dialog &>/dev/null && echo "1" || echo "0") -eq 0 ] 
+        then
+        sudo dnf -y -qq install dialog
+        fi
+        if [ $(dnf -q list installed openssh-server &>/dev/null && echo "1" || echo "0") -eq 0 ] 
+        then
+        sudo dnf -y -qq install openssh-server
+        fi
 
-if [ $ID = "ubuntu" ]
+elif [ $ID = "ubuntu" ]
 then
     if [ $(dpkg-query -W -f='${Status}' dialog 2>/dev/null | grep -c "ok installed") -eq 0 ] 
     then
@@ -34,23 +34,24 @@ then
 fi
 
 
-Selection Dialog
+#Selection Dialog
+
 cmd=(dialog --separate-output --checklist "Select Packages to Install:" 22 76 16)
-options=(1 "Google Chrome" on    # any option can be set to default to "on"
+    options=(1 "Google Chrome" on    # any option can be set to default to "on"
          2 "Rocketchat" on
          3 "SublimeText" on
          4 "Docker-CE" on
          5 "Docker Repo" off
-         6 "MongoDB " off )d
-choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
+         6 "MongoDB " off )
+    choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
 clear
 
-chrome="https://raw.githubusercontent.com/drpdishant/shell-scripts/$branch/install-chrome_$distro.sh"
-rocketchat="https://raw.githubusercontent.com/drpdishant/shell-scripts/$branch/install-rocketchat_$distro.sh"
-sublime="https://raw.githubusercontent.com/drpdishant/shell-scripts/$branch/install-sublime_$distro.sh"
-docker="https://raw.githubusercontent.com/drpdishant/shell-scripts/$branch/install-docker_$distro.sh"
+chrome="https://raw.githubusercontent.com/drpdishant/shell-scripts/$branch/install-chrome_$ID.sh"
+rocketchat="https://raw.githubusercontent.com/drpdishant/shell-scripts/$branch/install-rocketchat_$ID.sh"
+sublime="https://raw.githubusercontent.com/drpdishant/shell-scripts/$branch/install-sublime_$ID.sh"
+docker="https://raw.githubusercontent.com/drpdishant/shell-scripts/$branch/install-docker_$ID.sh"
 gitclone="https://raw.githubusercontent.com/drpdishant/shell-scripts/$branch/git_clone.sh"
-mongodb="https://raw.githubusercontent.com/drpdishant/shell-scripts/$branch/install-mongo_$distro.sh"
+mongodb="https://raw.githubusercontent.com/drpdishant/shell-scripts/$branch/install-mongo_$ID.sh"
 
 for choice in $choices
 do
