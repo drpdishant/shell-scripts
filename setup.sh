@@ -10,12 +10,12 @@ echo -e "\nPreparing Dialog"
 
 if [ $(lsb_release -si) = "Fedora" ]
 then
-sudo dnf -y -qq install dialog openssh-server
+sudo dnf -y install dialog openssh-server
 fi
 
 if [ $(lsb_release -si) = "Ubuntu" ]
 then
-sudo apt-get -y -qq -f install dialog openssh-server
+sudo apt-get -y install dialog openssh-server
 fi
 
 clear
