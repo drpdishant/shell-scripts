@@ -1,47 +1,61 @@
 #!/bin/bash
 #docker-compose
+latest=$(curl --silent "https://api.github.com/repos/docker/compose/releases/latest" | grep -Po '"tag_name": "\K.*?(?=")')
 if [ -f /usr/local/bin/docker-compose ] 
 then
-   echo "$(docker-compose -v) already installed.\n"
+   echo -e ">> $(docker-compose -v) already installed.\n\n>> Checking if any update is available\n"
+   current=$(docker-compose -v | awk '{print $3}' | tr -d '(,)')
+   if [ $latest != $current ]
+   then 
+      echo -e "A newer version $latest is availble .. Installing\n"
+      sudo curl -L "https://github.com/docker/compose/releases/download/$latest/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+      sudo chmod +x /usr/local/bin/docker-compose
+      #sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+      echo -e ">> Docker Compose Updated to version $latest"
+   else
+      echo -e ">> Docker Compose is up-to-date."
+   fi
 else
-   echo "Docker Compose not found. >>>> Installing "
-   sudo curl -sL "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+   echo -e "Docker Compose not found. >>>> Installing \n "
+   sudo curl -L "https://github.com/docker/compose/releases/download/$latest/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
    sudo chmod +x /usr/local/bin/docker-compose
    sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 fi
 
-un_codename="disco"
-codename=$(lsb_release -cs)
-if [ $(dpkg-query -W -f='${Status}' docker-ce 2>/dev/null | grep -c "ok installed") -eq 0 ];
+if [ $(dnf -q list installed docker-ce &>/dev/null && echo "1" || echo "0") -eq 0 ];
 then
-sudo apt-get -qq update
-sudo apt-get -y -qq  install \
-    apt-transport-https \
-    ca-certificates \
-    curl \
-    gnupg-agent \
-    software-properties-common
-    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-   if [ $codename = "disco"] ;
-   then
-   sudo add-apt-repository \
-   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-   bionic \
-   stable"
-   else
-   sudo add-apt-repository \
-   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-   $(lsb_release -cs) \
-   stable"
-   fi
-sudo apt-get -qq update
-sudo apt-get -y -qq  install docker-ce docker-ce-cli containerd.io
+echo -e ">> DOCKER NOT FOUND -- INSTALLING ...."
+
+echo -e ">> REMOVING OLDER VERSIONS IF EXIST"
+
+sudo dnf remove -y -qq docker \
+                  docker-client \
+                  docker-client-latest \
+                  docker-common \
+                  docker-latest \
+                  docker-latest-logrotate \
+                  docker-logrotate \
+                  docker-selinux \
+                  docker-engine-selinux \
+                  docker-engine
+echo -e ">> Installing dnf-plugins-core"
+sudo dnf -y -qq install dnf-plugins-core
+
+echo -e ">> Setting Up Stable Repo"
+sudo dnf config-manager \
+    --add-repo \
+    https://download.docker.com/linux/fedora/docker-ce.repo
+
+echo -e ">> Installing docker-ce docker-ce-cli containerd.io \n"
+sudo dnf -y install docker-ce docker-ce-cli containerd.io
+
+echo -e ">> Adding $USER to docker group \n"
 sudo usermod -aG docker $USER
 else
 current=`docker -v | awk '{print $3}' | tr -d '(,|.)'`;
-echo -e "$(docker -v) already Installed\n"
+echo -e "\n$(docker -v) already Installed\n"
 echo -e "Checking if it can be Updated\n"
-sudo apt-get -y -qq  install docker-ce docker-ce-cli containerd.io 
+sudo dnf -y -qq install docker-ce docker-ce-cli containerd.io
 updated=`docker -v | awk '{print $3}' | tr -d '(,|.)'`;
    if [ $current != $updated ];
    then
