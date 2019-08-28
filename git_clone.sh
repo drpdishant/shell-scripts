@@ -1,7 +1,7 @@
 #!/bin/bash
 echo ">>>>> Clone Drupal8-vagrant Repo"
 
-dockerdev="https://github.com/Noaman-addweb/Drupal8-vagrant.git"
+dockerdev="https://Noaman-addweb:addweb@github.com/Noaman-addweb/Drupal8-vagrant.git"
 
 
 if [ -d ~/Drupal8-vagrant ]
