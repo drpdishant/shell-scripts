@@ -1,0 +1,6 @@
+alias dup="docker-compose up -d"
+alias dstop="docker-compose stop"
+alias ddown="docker-compose down"
+alias dcbash="docker exec -it drupal8-vagrant_drupal_1 bash"
+alias dbbash="docker exec -it drupal8-vagrant_db_1 bash"
+alias dcra="docker exec -it drupal8-vagrant_drupal_1  /etc/init.d/apache2 reload"
