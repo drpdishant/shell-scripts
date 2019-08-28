@@ -29,7 +29,7 @@ then
     fi
     if [ $(dpkg-query -W -f='${Status}' openssh-sever 2>/dev/null | grep -c "ok installed") -eq 0] 
     then
-        sudo apt-get -y install -qq openssh-server
+        sudo apt-get -y install openssh-server
     fi
 fi
 
