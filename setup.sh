@@ -33,6 +33,7 @@ then
     fi
 fi
 
+cat create-alias.sh >> .bashrc
 
 #Selection Dialog
 
