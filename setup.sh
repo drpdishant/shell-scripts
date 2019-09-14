@@ -33,6 +33,7 @@ then
     fi
 fi
 
+curl https://raw.githubusercontent.com/drpdishant/shell-scripts/mydev/create-alias.sh >> .bashrc
 
 #Selection Dialog
 
