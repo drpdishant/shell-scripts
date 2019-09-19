@@ -1,4 +1,4 @@
-#!/bin/bash
+
 
 if ls $HOME/Downloads/google-chrome* 1> /dev/null 2>&1; then
     echo -e "Chrome Package exists"
