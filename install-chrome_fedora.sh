@@ -6,7 +6,7 @@ then
         echo -e "Chrome Package Already exists"
     else
         echo -e "Chrome doesn't exist   >>>>> Downloading\n"
-        wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm -P ~/Downloads
+        cd ~/Downloads && { curl -O https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm; cd -; }
     fi
     
     if sudo dnf -q -y install ~/Downloads/google-chrome-stable_current_x86_64.rpm 2>/dev/null
@@ -14,7 +14,7 @@ then
     else
         echo -e ">> Package is Corrupt - Redownloading..."
         rm -rf ~/Downloads/google-chrome-stable_current_x86_64.*
-        wget https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm -P ~/Downloads
+        cd ~/Downloads && { curl -O https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm; cd -; }
         echo -e ">> Installing ... "
         sudo dnf -q -y install ~/Downloads/google-chrome-stable_current_x86_64.rpm
     fi
