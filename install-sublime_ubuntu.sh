@@ -20,7 +20,7 @@ echo -e ">>     Download and Install Sublime\n"
 
 echo -e ">> ------ Install the GPG key: \n"
 
-wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
+curl -L https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
 echo -e ">> ------ Ensure apt is set up to work with https sources:\n"
 
 sudo apt-get -y -qq  install apt-transport-https
