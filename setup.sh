@@ -1,6 +1,6 @@
 #!/bin/bash
 
-read -e -p "Enter Branch [master]/dev: " -i "master" branch
+read -e -p "Enter Branch [master]/develop: " -i "master" branch
 
 #check for ID
 
