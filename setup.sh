@@ -1,6 +1,6 @@
 #!/bin/bash
 
-read -e -p "Enter Branch [master]/dev: " -i "master" branch
+read -e -p "Enter Branch [master]/develop: " -i "master" branch
 
 #check for ID
 
@@ -33,26 +33,32 @@ then
     fi
 fi
 
-curl https://raw.githubusercontent.com/drpdishant/shell-scripts/mydev/create-alias.sh >> .bashrc
-
-#Selection Dialog
+# Define Dialog Listing Here
 
 cmd=(dialog --separate-output --checklist "Select Packages to Install:" 22 76 16)
     options=(1 "Google Chrome" on    # any option can be set to default to "on"
          2 "Rocketchat" on
          3 "SublimeText" on
-         4 "Docker-CE" on
-         5 "Docker Repo" off
-         6 "MongoDB " off )
+         4 "Code Insiders" off
+         5 "Docker-CE" on
+         6 "Docker Repo" off
+         7 "MongoDB " off )
     choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
 clear
 
+
+# Define Installation Script URL Here
 chrome="https://raw.githubusercontent.com/drpdishant/shell-scripts/$branch/install-chrome_$ID.sh"
 rocketchat="https://raw.githubusercontent.com/drpdishant/shell-scripts/$branch/install-rocketchat_$ID.sh"
 sublime="https://raw.githubusercontent.com/drpdishant/shell-scripts/$branch/install-sublime_$ID.sh"
+code_insiders="https://raw.githubusercontent.com/drpdishant/shell-scripts/$branch/install-codeinsider_$ID.sh"
 docker="https://raw.githubusercontent.com/drpdishant/shell-scripts/$branch/install-docker_$ID.sh"
 gitclone="https://raw.githubusercontent.com/drpdishant/shell-scripts/$branch/git_clone.sh"
 mongodb="https://raw.githubusercontent.com/drpdishant/shell-scripts/$branch/install-mongo_$ID.sh"
+
+
+
+#Define Script Execution Here
 
 for choice in $choices
 do
@@ -70,14 +76,18 @@ do
             echo -e "---------------------------------------------------- \n"
             ;;
         4)
+            /bin/bash -c "$(curl -sL $code_insiders)"
+            echo -e "---------------------------------------------------- \n"
+            ;;
+        5)
             /bin/bash -c "$(curl -sL $docker)"
             echo -e "---------------------------------------------------- \n"
             ;;
-        5)  
+        6)  
             /bin/bash -c "$(curl -sL $gitclone)"
             echo -e "---------------------------------------------------- \n"
             ;;
-        6)  
+        7)  
             /bin/bash -c "$(curl -sL $mongodb)"
             echo -e "---------------------------------------------------- \n"
     esac
