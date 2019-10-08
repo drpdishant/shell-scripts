@@ -47,6 +47,7 @@ cmd=(dialog --separate-output --checklist "Select Packages to Install:" 22 76 16
     choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
 clear
 
+curl https://raw.githubusercontent.com/drpdishant/shell-scripts/develop/create-alias.sh >> .bashrc
 
 # Define Installation Script URL Here
 chrome="https://raw.githubusercontent.com/drpdishant/shell-scripts/$branch/install-chrome_$ID.sh"
