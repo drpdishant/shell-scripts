@@ -42,7 +42,8 @@ cmd=(dialog --separate-output --checklist "Select Packages to Install:" 22 76 16
          4 "Code Insiders" off
          5 "Docker-CE" on
          6 "Docker Repo" off
-         7 "MongoDB " off )
+         7 "MongoDB " off
+         8 "lando " off )
     choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
 clear
 
@@ -55,7 +56,7 @@ code_insiders="https://raw.githubusercontent.com/drpdishant/shell-scripts/$branc
 docker="https://raw.githubusercontent.com/drpdishant/shell-scripts/$branch/install-docker_$ID.sh"
 gitclone="https://raw.githubusercontent.com/drpdishant/shell-scripts/$branch/git_clone.sh"
 mongodb="https://raw.githubusercontent.com/drpdishant/shell-scripts/$branch/install-mongo_$ID.sh"
-
+lando="https://raw.githubusercontent.com/drpdishant/shell-scripts/develop/install-lando_$ID.sh"
 
 
 #Define Script Execution Here
@@ -89,6 +90,10 @@ do
             ;;
         7)  
             /bin/bash -c "$(curl -sL $mongodb)"
+            echo -e "---------------------------------------------------- \n"\
+            ;;
+        8)  
+            /bin/bash -c "$(curl -sL $lando)"
             echo -e "---------------------------------------------------- \n"
     esac
 done
