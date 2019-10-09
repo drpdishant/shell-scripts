@@ -47,7 +47,7 @@ cmd=(dialog --separate-output --checklist "Select Packages to Install:" 22 76 16
     choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
 clear
 
-curl https://raw.githubusercontent.com/drpdishant/shell-scripts/develop/create-alias.sh >> ~/.bashrc
+curl https://raw.githubusercontent.com/drpdishant/shell-scripts/$branch/create-alias.sh >> ~/.bashrc
 
 # Define Installation Script URL Here
 chrome="https://raw.githubusercontent.com/drpdishant/shell-scripts/$branch/install-chrome_$ID.sh"
@@ -57,7 +57,7 @@ code_insiders="https://raw.githubusercontent.com/drpdishant/shell-scripts/$branc
 docker="https://raw.githubusercontent.com/drpdishant/shell-scripts/$branch/install-docker_$ID.sh"
 gitclone="https://raw.githubusercontent.com/drpdishant/shell-scripts/$branch/git_clone.sh"
 mongodb="https://raw.githubusercontent.com/drpdishant/shell-scripts/$branch/install-mongo_$ID.sh"
-lando="https://raw.githubusercontent.com/drpdishant/shell-scripts/develop/install-lando_$ID.sh"
+lando="https://raw.githubusercontent.com/drpdishant/shell-scripts/$branch/install-lando_$ID.sh"
 
 
 #Define Script Execution Here
