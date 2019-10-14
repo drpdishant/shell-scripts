@@ -42,20 +42,10 @@ cmd=(dialog --separate-output --checklist "Select Packages to Install:" 22 76 16
          4 "Code Insiders" off
          5 "Docker-CE" on
          6 "Docker Repo" off
-<<<<<<< HEAD
          7 "MongoDB " off
          8 "lando " off )
     choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
 clear
-
-curl https://raw.githubusercontent.com/drpdishant/shell-scripts/$branch/create-alias.sh >> ~/.bashrc
-=======
-         7 "MongoDB " off )
-    choices=$("${cmd[@]}" "${options[@]}" 2>&1 >/dev/tty)
-clear
-
->>>>>>> 72a9bb022f020e62d0cdddd9c7a6bfeb14232c6b
-
 # Define Installation Script URL Here
 chrome="https://raw.githubusercontent.com/drpdishant/shell-scripts/$branch/install-chrome_$ID.sh"
 rocketchat="https://raw.githubusercontent.com/drpdishant/shell-scripts/$branch/install-rocketchat_$ID.sh"
