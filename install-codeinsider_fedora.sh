@@ -21,7 +21,7 @@ then
     fi
 else
 
-current="$(yum info -q code-insiders | awk 'NR==7 {print}' | awk -F ': code-insiders-' '{print $2}' | awk -F '.el7' '{print $1}')"
+current="$(yum info -yq code-insiders | awk 'NR==7 {print}' | awk -F ': code-insiders-' '{print $2}' | awk -F '.el7' '{print $1}')"
 echo -e "Code Insiders $current already installed \n"
 echo -e "Checking if it can be updated\n"  
 
