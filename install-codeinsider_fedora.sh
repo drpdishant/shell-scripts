@@ -14,7 +14,7 @@ then
     then echo -e "Installed $(code-insiders --version)"
     else
         echo -e ">> Package is Corrupt - Redownloading..."
-        rm -rf ~/Downloads/$(package_name)
+        # rm -rf ~/Downloads/${package_name}
         cd ~/Downloads && { curl -Lo "$package_name" https://go.microsoft.com/fwlink/?LinkID=760866; cd -; }
         echo -e ">> Installing ... "
         sudo dnf -y install ~/Downloads/$package_name
@@ -28,7 +28,7 @@ echo -e "Checking if it can be updated\n"
     if [ $current != $latest ];
     then
     echo -e "An Update is Available, Updating Code Insiders to $latest"
-    rm -rf ~/Downloads/$package_name
+    # rm -rf ~/Downloads/$package_name
         cd ~/Downloads && { curl -Lo "$package_name" https://go.microsoft.com/fwlink/?LinkID=760866; cd -; }
         echo -e ">> Installing ... "
         sudo dnf -y install ~/Downloads/$package_name
