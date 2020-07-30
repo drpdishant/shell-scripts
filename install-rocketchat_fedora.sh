@@ -23,7 +23,7 @@ echo -e "Checking if it can be updated\n"
     rm -rf ~/Downloads/rocketchat*
     cd ~/Downloads && { curl -L -O https://github.com/RocketChat/Rocket.Chat.Electron/releases/download/$latest/rocketchat-$latest.x86_64.rpm; cd -;}
     sudo dnf install -y -qq ~/Downloads/rocketchat-$latest.x86_64.rpm
-    echo -e "Updated Rocketchat to $(dpkg -s rocketchat | grep '^Version:')\n"
+    echo -e "Updated Rocketchat to $(dnf -q list installed rocketchat | awk 'FNR == 2 {print $2}' | sed 's/-.*//')\n"
     else
     echo -e "No Update Found!\n"
     fi
