@@ -7,7 +7,6 @@ read -e -p "Enter Branch [master]/develop: " -i "master" branch
 echo -e "\n>> Checking ID\n"
 . /etc/os-release
 echo -e "Distrubution Name = $NAME \n"
-set -x
 
 #Preparing Dialog
 
